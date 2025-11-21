@@ -1,3 +1,4 @@
+version: "3.9"
 
 services:
   postgres:
@@ -29,10 +30,11 @@ services:
       - "5000:5000"
 
   client:
-    build: ./client
+    build:
+      context: ./client
+      args:
+        VITE_API_URL: http://localhost:5000  # <-- important!
     container_name: todo_frontend
-    environment:
-      VITE_API_URL: http://server:5000
     depends_on:
       - server
     ports:
