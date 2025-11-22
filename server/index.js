@@ -10,11 +10,11 @@ const PORT = process.env.PORT || 5000;
 
 // Configure DB connection
 const db = new Client({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,     // IMPORTANT for Docker: "postgres"
-  database: process.env.DB_NAME, // FIXED (was DATABASE)
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  user: process.env.MYSQLUSER,
+  host: process.env.MYSQLHOST,     // IMPORTANT for Docker: "postgres"
+  database: process.env.MYSQLDATABASE, // FIXED (was DATABASE)
+  password: process.env.MYSQLPASSWORD,
+  port: process.env.MYSQLPORT,
 });
 
 db.connect()
