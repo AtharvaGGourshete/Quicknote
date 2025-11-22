@@ -12,7 +12,6 @@ services:
       - pgdata:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
-      # FIXED: User must match POSTGRES_USER (todo), not 'atharva'
       test: ["CMD-SHELL", "pg_isready -U todo"]
       interval: 5s
       retries: 5
@@ -21,7 +20,6 @@ services:
     build: ./server
     container_name: todo_backend
     environment:
-      # FIXED: Variable names now match server/index.js exactly
       MYSQLUSER: todo
       MYSQLPASSWORD: postgres@1q2w3e4r
       MYSQLDATABASE: todo
@@ -38,7 +36,6 @@ services:
     build:
       context: ./client
       args:
-        # FIXED: Points to localhost because the browser (outside Docker) makes the request
         VITE_API_URL: http://localhost:5000
     container_name: todo_frontend
     depends_on:

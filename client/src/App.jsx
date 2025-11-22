@@ -29,7 +29,6 @@ function App() {
     progress: 0
   });
 
-  // Calculate stats based on todos
   const updateStats = () => {
     const total = todos.length;
     const completed = todos.filter(todo => todo.completed).length;
@@ -42,7 +41,6 @@ function App() {
     });
   };
 
-  // Fetch todos ONCE when the app loads
   useEffect(() => {
     const fetchTodos = async () => {
       const API_URL = import.meta.env.VITE_API_URL;
@@ -58,7 +56,6 @@ function App() {
     fetchTodos();
   }, []);
 
-  // Update stats whenever todos change
   useEffect(() => {
     updateStats();
   }, [todos]);
@@ -67,7 +64,6 @@ function App() {
     <div className="min-h-screen bg-background">
       <Toaster />
       
-      {/* Hero Header */}
       <header className="border-b bg-card">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
@@ -89,7 +85,7 @@ function App() {
 
       <div className="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2 mb-8">
-          {/* Total Tasks Card */}
+
           <Card className="bg-card">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
@@ -107,7 +103,7 @@ function App() {
             </CardContent>
           </Card>
 
-          {/* Days Streak Card */}
+
           <Card className="bg-card">
             <CardHeader className="pb-3">
               <div className="flex items-center justify-between">
@@ -126,7 +122,6 @@ function App() {
           </Card>
         </div>
 
-        {/* Quick Actions Section */}
         <Card className="mb-8 bg-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -142,7 +137,6 @@ function App() {
           </CardContent>
         </Card>
 
-        {/* Tasks List Section */}
         <Card className="bg-card">
           <CardHeader>
             <CardTitle className="flex items-center justify-between">
@@ -160,7 +154,6 @@ function App() {
           </CardContent>
         </Card>
 
-        {/* Empty State */}
         {todos.length === 0 && (
           <Card className="bg-card mt-8">
             <CardContent className="text-center py-12">

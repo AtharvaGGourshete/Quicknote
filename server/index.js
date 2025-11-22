@@ -8,11 +8,10 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Configure DB connection
 const db = new Client({
   user: process.env.MYSQLUSER,
-  host: process.env.MYSQLHOST,     // IMPORTANT for Docker: "postgres"
-  database: process.env.MYSQLDATABASE, // FIXED (was DATABASE)
+  host: process.env.MYSQLHOST,    
+  database: process.env.MYSQLDATABASE,
   password: process.env.MYSQLPASSWORD,
   port: process.env.MYSQLPORT,
 });
@@ -24,7 +23,6 @@ db.connect()
 app.use(cors());
 app.use(json());
 
-// CREATE TODO
 app.post("/todos", async (req, res) => {
   try {
     const { description } = req.body;
@@ -46,7 +44,6 @@ app.post("/todos", async (req, res) => {
   }
 });
 
-// GET ALL TODOS
 app.get("/todos", async (req, res) => {
   try {
     const allTodos = await db.query("SELECT * FROM todos");
@@ -57,7 +54,6 @@ app.get("/todos", async (req, res) => {
   }
 });
 
-// GET TODO BY ID
 app.get("/todos/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -69,7 +65,6 @@ app.get("/todos/:id", async (req, res) => {
   }
 });
 
-// UPDATE TODO
 app.put("/todos/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -87,7 +82,6 @@ app.put("/todos/:id", async (req, res) => {
   }
 });
 
-// DELETE TODO
 app.delete("/todos/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -100,7 +94,6 @@ app.delete("/todos/:id", async (req, res) => {
   }
 });
 
-// START SERVER
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

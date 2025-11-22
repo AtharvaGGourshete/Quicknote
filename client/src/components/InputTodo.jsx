@@ -9,7 +9,6 @@ const InputTodo = ({ todos, setTodos }) => {
   const onSubmitForm = async (e) => {
     e.preventDefault();
     
-    // Basic validation
     if (!description.trim()) {
       toast.error("Please add a task");
       return;
@@ -34,7 +33,7 @@ const InputTodo = ({ todos, setTodos }) => {
 
       setTodos((prev) => [...prev, data]);
       toast.success("Task added successfully.");
-      setDescription(""); // Clear input after successful submission
+      setDescription("");
     } catch (error) {
       console.error(error.message);
       toast.error("Failed to add task.");
@@ -43,9 +42,6 @@ const InputTodo = ({ todos, setTodos }) => {
 
   return (
     <div className="container mx-auto max-w-3xl space-y-6 mr-5 -mt-16 pt-3">
-      {/* <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-800">QuickNote</h1>
-      </div> */}
       
       <form onSubmit={onSubmitForm} className="flex gap-4">
         <Input

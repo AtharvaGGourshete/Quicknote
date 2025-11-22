@@ -26,7 +26,6 @@ const ListTodos = ({ todos, setTodos }) => {
     }
   };
 
-  // Listen for todo updates from EditTodo
   useEffect(() => {
     const handleTodoUpdate = () => {
       // This would trigger a refetch if needed
